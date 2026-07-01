@@ -1,0 +1,362 @@
+/* DESIGN TOKENS & VARIÁVEIS SISTÊMICAS */
+:root {
+    --bg-base: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-sidebar: #0f172a;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --cor-principal: #4f46e5;
+    --cor-secundaria: #f59e0b; /* Alerta/Contraste */
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    
+    /* Variável refinada de Box-Shadow solicitada no bloco [03:17] */
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --card-shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.15);
+    
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --space-md: 24px;
+}
+
+/* SISTEMA TEMA ESCURO (Sobrescrita de Tokens) */
+body.tema-escuro {
+    --bg-base: #020617;
+    --bg-surface: #0b1329;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #1e293b;
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --card-shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* [01:16] VISIBILIDADE DO BOTÃO NO MODO ESCURO */
+body.tema-escuro .btn-tema-escuro {
+    background-color: var(--cor-secundaria);
+    color: #020617;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+/* [02:02] TRANSIÇÃO UNIVERSAL DE ELEMENTOS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.3s ease;
+}
+
+/* RESET E ESTRUTURA GLOBAL */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    max-width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* GRID DE LAYOUT DO SISTEMA */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* BARRA LATERAL (SIDEBAR) */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-sidebar);
+    color: #ffffff;
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+@media (max-width: 868px) {
+    .sidebar { display: none; } /* Oculta em telas menores para focar na responsividade */
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon { font-size: 1.5rem; }
+.brand-name { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.5px; }
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+}
+
+.nav-item.active, .nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+/* CONTAINER PRINCIPAL DE CONTEÚDO */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    gap: 32px;
+}
+
+@media (max-width: 480px) {
+    .main-content { padding: 16px; }
+}
+
+/* COMPONENTE HEADER */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-title h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+.header-title p { color: var(--text-muted); font-size: 0.95rem; }
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.search-bar {
+    position: relative;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 280px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+/* O BOTÃO DA AULA */
+.btn-tema-escuro {
+    background-color: var(--cor-principal);
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+/* CARDS DE SUMÁRIO / MÉTRICAS */
+.metrics-bar {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.metric-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.metric-card span { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;}
+.metric-card h2 { font-size: 1.8rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+
+/* PAINEL DE FILTROS */
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.section-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-filter {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 8px 18px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.btn-filter:hover, .btn-filter.active {
+    background-color: var(--cor-principal);
+    color: #ffffff;
+    border-color: var(--cor-principal);
+}
+
+/* DASHBOARD GRID E ESTRUTURA DE FILHOS FLEXBOX */
+.dashboard-grid {
+    flex: 1;
+}
+
+.projects-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: flex-start;
+}
+
+/* [03:17] ELEMENTO ARTICLE COM PROFUNDIDADE DE SOMBRA (BOX-SHADOW) */
+article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    
+    /* Configuração Flexbox base responsiva: 3 colunas em Desktop */
+    flex: 1 1 320px;
+    max-width: calc(33.333% - 16px);
+    
+    /* Aplicação direta do box-shadow com refinamento e transparência estável */
+    box-shadow: var(--card-shadow);
+    position: relative;
+}
+
+/* BREAKPOINTS FLEXBOX DINÂMICOS */
+@media (max-width: 1200px) {
+    article { max-width: calc(50% - 12px); }
+}
+@media (max-width: 768px) {
+    article { max-width: 100%; }
+}
+
+article:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+/* ELEMENTOS CARD INTERNOS */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.card-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 30px;
+    background: rgba(79, 70, 229, 0.1);
+    color: var(--cor-principal);
+}
+
+.project-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+/* FOOTER INTERNO EMPURRADO COM FLEXBOX MARGIN-TOP: AUTO */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.tech-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.action-link {
+    background: transparent;
+    border: none;
+    color: var(--cor-principal);
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+body.tema-escuro .action-link {
+    color: var(--cor-secundaria);
+}
+
+/* RODAPÉ DO SISTEMA */
+.main-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: var(--space-md);
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: 10px;
+}
