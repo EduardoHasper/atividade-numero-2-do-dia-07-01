@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevMetrics Pro | Enterprise Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="app-body">
+
+    <div class="app-layout">
+        
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">⚡</span>
+                <span class="brand-name">DevMetrics</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">📂 Projetos</a>
+                <a href="#" class="nav-item">📊 Estatísticas</a>
+                <a href="#" class="nav-item">⚙️ Configurações</a>
+            </nav>
+        </aside>
+
+        <div class="main-content">
+            
+            <header class="main-header">
+                <div class="header-title">
+                    <h1>Console de Engenharia</h1>
+                    <p>Monitore, filtre e gerencie os repositórios ativos do ecossistema.</p>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="search-bar">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="project-search" placeholder="Buscar projeto pelo título...">
+                    </div>
+                    <button id="theme-toggle" class="btn-tema-escuro" aria-label="Alternar tema do sistema">
+                        <span class="theme-icon">☀️</span>
+                    </button>
+                </div>
+            </header>
+
+            <section class="metrics-bar" id="metrics-summary">
+                </section>
+
+            <section class="control-panel">
+                <div class="filter-group">
+                    <span class="section-tag">Categorias</span>
+                    <div class="filter-buttons" id="filter-actions">
+                        <button class="btn-filter active" data-filter="all">Todos os Sistemas</button>
+                        <button class="btn-filter" data-filter="Backend">Core Backend</button>
+                        <button class="btn-filter" data-filter="Frontend">Interfaces UI</button>
+                        <button class="btn-filter" data-filter="Fullstack">Fullstack Applications</button>
+                        <button class="btn-filter" data-filter="Mobile">Mobile Apps</button>
+                    </div>
+                </div>
+            </section>
+
+            <main class="dashboard-grid">
+                <div class="projects-wrapper" id="projects-grid">
+                    </div>
+            </main>
+
+            <footer class="main-footer">
+                <div class="footer-content">
+                    <p>Ambiente de Homologação &bull; Versão 4.2.1-Stable</p>
+                    <p>&copy; 2026 DevMetrics Inc. Arquitetura Flexbox Avançada.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
